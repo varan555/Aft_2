@@ -18,6 +18,8 @@ public class TestBase {
 
         @BeforeEach
         public void start() {
+
+//            //mvn clean integration-test -Dbrowser=opera
 //            String browser = System.getProperties().getProperty("browser");
 //        switch (browser) {
 //            case "chrome": {
@@ -26,7 +28,7 @@ public class TestBase {
 //                break;
 //            }
 //            case "opera": {
-//                System.setProperty("webdriver.opera.driver", "drivers/opera.exe");
+//                System.setProperty("webdriver.opera.driver", "drivers/operadriver.exe");
 //                driver = new OperaDriver();
 //                break;
 //            }
@@ -61,13 +63,13 @@ public class TestBase {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elementBy));
     }
 
-    public void enter(By elementBy, String text) {
+    public static void enter(By elementBy, String text) {
             WebElement we = driver.findElement(elementBy);
         wait.until(ExpectedConditions.visibilityOf(we));
         driver.findElement(elementBy).sendKeys(text);
     }
 
-    public void checkFields(By field, String value) {
+    public static void checkFields(By field, String value) {
             assertTrue(driver.findElement(field).getAttribute("value").equals(value), value);
     }
 

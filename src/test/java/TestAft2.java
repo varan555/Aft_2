@@ -11,9 +11,9 @@ public class TestAft2 extends TestBase{
 
     @ParameterizedTest
     @CsvSource({
-            "Ivanov, Ivan, 26.05.2000, Иванов, Иван, Иванович, 26.05.1990, M, 1485, 123456, 25.02.2005, Кем-то",
-            "Nikonov, Ars, 22.03.2001, Никонов, Арс, Нилович, 22.03.1991, M, 1421, 123451, 25.02.2006, Кем-то2",
-            "Ivanov, Serg, 26.05.2000, Иванов, Серж, Иванович, 21.01.2010, M, 1485, 123459, 25.02.2020, Кем-то3"
+            "Ivanov, Ivan, 26.05.2000 , Иванов, Иван, Иванович, 26.05.1990 , M, 1485, 123456, 22.03.2011 , Кем-то",
+            "Nikonov, Ars, 22.03.2001 , Никонов, Арс, Нилович, 22.03.1991 , M, 1421, 123451, 22.03.2012 , Кем-то2",
+            "Ivanov, Serg, 26.05.2000 , Иванов, Серж, Иванович, 22.03.1999 , M, 1485, 123459, 22.03.2019 , Кем-то3"
     })
             public void sberban2kTest(@AggregateWith(TestIteracAggregator.class) TestIterace test) {
             goTo();
@@ -28,7 +28,7 @@ public class TestAft2 extends TestBase{
 
             click(By.xpath("//a[@href ='https://online.sberbankins.ru/store/vzr/index.html']"));
 
-            click(By.xpath("//div[@class ='online-card-program selected']"));
+            click(By.xpath("//h3[contains(text(), 'Минимальная')]"));
 
             click(By.xpath("//button[text() ='Оформить']"));
 
@@ -49,20 +49,21 @@ public class TestAft2 extends TestBase{
         enter(By.xpath("//input[@id='documentDate']"), test.getDateDeliv());
         enter(By.xpath("//input[@id='documentIssue']"), test.getPlaceDeliv());
 
+
         //Проверка введенных даных
         checkFields(By.xpath("//input[@placeholder='Surname']"), test.getSurnameStr());
         checkFields(By.xpath("//input[@placeholder='Name']"), test.getNameStr());
         checkFields(By.xpath("//input[@id = 'birthDate_vzr_ins_0' and contains(@placeholder, 'дд.мм.гггг')]"), test.getBDStr());
-//        checkFields(By.xpath("//input[@id='person_lastName']"), test.getSurname());
+     //   checkFields(By.xpath("//input[@id='person_lastName']"), test.getSurname());
         checkFields(By.xpath("//input[@id='person_firstName']"), test.getName());
         checkFields(By.xpath("//input[@id='person_middleName']"), test.getMiddleName());
-   //     checkFields(By.xpath("//input[@id='person_birthDate']"), test.getBD());
+        checkFields(By.xpath("//input[@id='person_birthDate']"), test.getBD());
         if(test.getMale().equals("F")) {
             assertTrue(driver.findElement(By.xpath("//label[@class ='btn ng-valid ng-touched ng-dirty active' and contains(text(),'Женский')]")).isDisplayed());
         }
-//        checkFields(By.xpath("//input[@id='passportSeries']"), test.getPasS());
+   //     checkFields(By.xpath("//input[@id='passportSeries']"), test.getPasS());
         checkFields(By.xpath("//input[@id='passportNumber']"), test.getPasN());
-    //    checkFields(By.xpath("//input[@id='documentDate']"), test.getDateDeliv());
+        checkFields(By.xpath("//input[@id='documentDate']"), test.getDateDeliv());
    //     checkFields(By.xpath("//input[@id='documentIssue']"), test.getPlaceDeliv());
 
         //Проверка появления поля после отправки

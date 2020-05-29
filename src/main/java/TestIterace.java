@@ -5,8 +5,8 @@ public class TestIterace {
     private String surnameStr;
     private String nameStr;
     private String BDStr;
-    private String name;
     private String surname;
+    private String name;
     private String middleName;
     private String BD;
     private String male;
@@ -15,7 +15,7 @@ public class TestIterace {
     private String dateDeliv;
     private String placeDeliv;
 
-    public TestIterace(String surnameStr, String nameStr, String BDStr, String name, String surname, String middleName,
+    public TestIterace(String surnameStr, String nameStr, String BDStr, String surname, String name, String middleName,
                        String BD, String male, String pasS, String pasN, String dateDeliv, String placeDeliv) {
         this.surnameStr = surnameStr;
         this.nameStr = nameStr;
